@@ -1,0 +1,34 @@
+{
+  "name": "discogs",
+  "version": "1.0.0",
+  "description": "Discogs Typescript API",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:CapitanFindusFI/discogs-js.git"
+  },
+  "keywords": [
+    "discogs",
+    "api"
+  ],
+  "author": {
+    "email": "am95.dev@gmail.com",
+    "name": "CapitanFindusFI"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.40.1",
+    "eslint": "8.26.0",
+    "eslint-config-standard-with-typescript": "23.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.3.0",
+    "eslint-plugin-promise": "6.1.1",
+    "typescript": "4.8.4"
+  },
+  "dependencies": {
+    "axios": "1.1.3"
+  }
+}
