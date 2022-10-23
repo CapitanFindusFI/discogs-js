@@ -1,1 +1,1 @@
-// API entrypoint
+export * from "./client";
