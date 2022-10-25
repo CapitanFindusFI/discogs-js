@@ -1,4 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { DiscogsArtist } from "./types/artist";
+import {
+  DiscogsReleaseRequestParams,
+  DiscogsReleaseResponse,
+} from "./types/releases";
 import { DiscogsSearchRequest, DiscogsSearchResult } from "./types/search";
 
 class DiscogsClient {
@@ -39,6 +44,19 @@ class DiscogsClient {
         q: params.query,
         ...params,
       },
+    });
+  }
+
+  public getArtist(id: number): Promise<DiscogsArtist> {
+    return this._get<DiscogsArtist>(`/artist/${id}`);
+  }
+
+  public getArtistReleases(
+    id: number,
+    params: DiscogsReleaseRequestParams
+  ): Promise<DiscogsReleaseResponse> {
+    return this._get<DiscogsReleaseResponse>(`/artist/${id}/releases`, {
+      params,
     });
   }
 }
