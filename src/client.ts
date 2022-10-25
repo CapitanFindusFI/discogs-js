@@ -1,5 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { DiscogsArtist } from "./types/artist";
+import { DiscogsLabel } from "./types/label";
+import { DiscogsLabelReleasesResponse } from "./types/label-release";
+import { PaginationRequest } from "./types/pagination";
 import {
   DiscogsReleaseRequestParams,
   DiscogsReleaseResponse,
@@ -56,6 +59,19 @@ class DiscogsClient {
     params: DiscogsReleaseRequestParams
   ): Promise<DiscogsReleaseResponse> {
     return this._get<DiscogsReleaseResponse>(`/artist/${id}/releases`, {
+      params,
+    });
+  }
+
+  public getLabel(id: number): Promise<DiscogsLabel> {
+    return this._get<DiscogsLabel>(`/labels/${id}`);
+  }
+
+  public getLabelReleases(
+    id: number,
+    params: PaginationRequest
+  ): Promise<DiscogsLabelReleasesResponse> {
+    return this._get<DiscogsLabelReleasesResponse>(`/label/${id}/releases`, {
       params,
     });
   }
