@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import * as errors from "./errors";
 import { DiscogsArtist } from "./types/artist";
 import { DiscogsLabel } from "./types/label";
 import { DiscogsLabelReleasesResponse } from "./types/label-release";
@@ -29,16 +30,33 @@ class DiscogsClient {
     });
   }
 
-  private _get<T>(url: string, config: AxiosRequestConfig = {}): Promise<T> {
-    return this._httpClient.get<T>(url, config).then((r) => r.data);
+  private _handleError(error: any): never {
+    if (axios.isAxiosError(error)) {
+      switch (error.code) {
+        case "500":
+          throw new errors.DiscogsError(error.message);
+        case "422":
+          throw new errors.BadRequestError(error.message);
+        default:
+          throw error;
+      }
+    }
+    throw error;
   }
 
-  private _post<T>(
+  private async _get<T>(
     url: string,
-    data: any,
     config: AxiosRequestConfig = {}
-  ): Promise<T> {
-    return this._httpClient.post<T>(url, data, config).then((r) => r.data);
+  ): Promise<T | never> {
+    try {
+      const response: AxiosResponse<T> = await this._httpClient.get<T>(
+        url,
+        config
+      );
+      return response.data;
+    } catch (error) {
+      this._handleError(error);
+    }
   }
 
   public search(params: DiscogsSearchRequest): Promise<DiscogsSearchResult> {
