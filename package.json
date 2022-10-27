@@ -1,6 +1,6 @@
 {
   "name": "discogs",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Discogs Typescript API",
   "main": "dist/client.js",
   "types": "dist/client.d.ts",
