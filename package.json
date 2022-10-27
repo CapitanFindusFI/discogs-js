@@ -1,10 +1,17 @@
 {
-  "name": "discogs",
-  "version": "1.0.0",
-  "description": "Discogs Typescript API",
-  "main": "index.js",
+  "name": "discogs-ts",
+  "version": "0.0.1",
+  "description": "Simple implementation of discogs database APIs made with Typescript",
+  "main": "dist/client.js",
+  "types": "dist/client.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "repository": {
     "type": "git",
