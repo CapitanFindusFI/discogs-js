@@ -4,7 +4,8 @@
   "description": "Discogs Typescript API",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint --fix"
   },
   "repository": {
     "type": "git",
