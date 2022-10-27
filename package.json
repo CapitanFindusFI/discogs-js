@@ -1,7 +1,7 @@
 {
-  "name": "discogs",
+  "name": "discogs-ts",
   "version": "0.0.1",
-  "description": "Discogs Typescript API",
+  "description": "Simple implementation of discogs database APIs made with Typescript",
   "main": "dist/client.js",
   "types": "dist/client.d.ts",
   "scripts": {
